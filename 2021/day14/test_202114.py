@@ -1,18 +1,20 @@
 # test_aoc_template.py
-import pathlib
+import sys
+import os
 import pytest
 import aoc202114 as aoc      # replace aoc_template with the code file (e.g. 202101)
+sys.path.extend(os.path.normpath(os.path.join(os.getcwd(), '../aocutils')))
+import aocutils.fileutils
 
-PUZZLE_DIR = pathlib.Path(__file__).parent
 
 @pytest.fixture
 def example1():
-    puzzle_input = (PUZZLE_DIR / "example1.txt").read_text().strip().split('\n')
+    puzzle_input = aocutils.fileutils.read_file("example1.txt")
     return aoc.parse(puzzle_input)
 
 @pytest.fixture
 def example2():
-    puzzle_input = (PUZZLE_DIR / "example2.txt").read_text().strip()
+    puzzle_input = aocutils.fileutils.read_file("example2.txt")
     return aoc.parse(puzzle_input)
 
 def test_parse_example1(example1):

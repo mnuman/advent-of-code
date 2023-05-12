@@ -1,9 +1,13 @@
 # aoc_template.py
-import math
+import sys
+import os
+sys.path.extend(os.path.normpath(os.path.join(os.getcwd(), '../aocutils')))
 import pathlib
+import math
 import parse as parser
 import collections
 from functools import reduce
+import aocutils.fileutils
 
 def parse(puzzle_input):
     """Parse input. The first line is the starting material; rules are from line 3 onwards in format: pair -> insert
@@ -52,6 +56,7 @@ def part2(data):
     """Solve part 2.
       Tried brute-forcing it, but this is not going to work for 40 iterations.
       Starting with a polymer of length n, after m iterations we have a polymer of length: 2^m*n - 2^m + 1
+      The puzzle input has length 20
       After 10 iterations                    2^10*n - 2^10+1 = 1024n-1023 = 19457
       For 40 iterations this would entail:   20.890.720.927.745 ... Oops
 
@@ -80,6 +85,6 @@ def solve(my_input):
 
 
 if __name__ == "__main__":
-    puzzle_input = pathlib.Path("day-14.txt").read_text().strip().split('\n')
+    puzzle_input = aocutils.fileutils.read_file("day-14.txt")
     solutions = solve(puzzle_input)
     print("\n".join(str(solution) for solution in solutions))
