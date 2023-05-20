@@ -33,7 +33,10 @@ def count_window_is_greater(iterable):
 
 
 def part2(measurements):
-    windowed = [measurements[i] + measurements[i + 1] + measurements[i + 2] for i in range(len(measurements) - 2)]
+    windowed = [
+        measurements[i] + measurements[i + 1] + measurements[i + 2]
+        for i in range(len(measurements) - 2)
+    ]
     return sum([1 for (a, b) in zip(windowed, windowed[1:]) if b > a])
 
 
