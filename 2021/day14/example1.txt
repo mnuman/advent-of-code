@@ -16,3 +16,33 @@ BB -> N
 BC -> B
 CC -> N
 CN -> C
+
+
+NNCB = {NN, NC, CB}
+NN -> C, NN -> NCN = NC + CN
+NC -> B, NC -> NBC = NB + BC
+CB -> H, CB -> CHB = CH + HB
+
+NNCB -> NCNBCHB
+{NN, NC, CB} -> {NC, CN, NB, BC, CH, HB}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

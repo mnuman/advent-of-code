@@ -77,16 +77,23 @@ def fetch_instructions(filename):
 
 
 class Program:
-
     def __init__(self, program):
-        self.iteration = 0  # maximum number of iteration (safe guard against infinite loop)
+        self.iteration = (
+            0  # maximum number of iteration (safe guard against infinite loop)
+        )
         self.accumulator = 0  # value in accumulator
         self.program_counter = 0  # program counter = pointer to current instruction
-        self.instructions_executed = []  # keep track of the numbers of the instructions executed
+        self.instructions_executed = (
+            []
+        )  # keep track of the numbers of the instructions executed
         self.program = program
 
     def get_instruction(self, location=None):
-        return self.program[self.program_counter] if location is None else self.program[location]
+        return (
+            self.program[self.program_counter]
+            if location is None
+            else self.program[location]
+        )
 
     def acc(self, arg):
         self.accumulator += arg
@@ -116,19 +123,23 @@ class Program:
             self.iteration += 1
 
         # finish by returning program state
+        print(f"Total iterations executed: {self.iteration}")
         return self.accumulator, self.program_counter, self.instructions_executed
 
 
 def stop_on_loop(instructions_executed, next_pc):
-    """Stop if the next instruction has already been executed
-    """
+    """Stop if the next instruction has already been executed"""
     return next_pc in instructions_executed
 
 
 if __name__ == "__main__":
     pgm = fetch_instructions("data/day08.txt")
     executor = Program(pgm)
-    accum, next_instruction, executed_instructions = executor.execute(stop_on_loop, 1000000)
+    accum, next_instruction, executed_instructions = executor.execute(
+        stop_on_loop, 1000000
+    )
 
-    print(f"Completed program, accumulator is now {accum}, next up was {next_instruction}")
-    print(f"Instructions already executed:\n{executed_instructions}")
+    print(
+        f"Completed program, accumulator is now {accum}, next up was {next_instruction}"
+    )
+    # print(f"Instructions already executed:\n{executed_instructions}")

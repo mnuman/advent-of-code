@@ -4,6 +4,7 @@ import os
 import math
 import parse as parser
 import collections
+import time
 from functools import reduce
 
 sys.path.extend(os.path.normpath(os.path.join(os.getcwd(), "..")))
@@ -99,8 +100,13 @@ def part2(data):
 def solve(my_input):
     """Solve the puzzle for the given input."""
     data = parse(my_input)
+    s1 = time.process_time_ns()
     solution1 = part1(data)
+    s2 = time.process_time_ns()
     solution2 = part2(data)
+    s3 = time.process_time_ns()
+    print(f"Part1: {s2 - s1}")
+    print(f"Part2: {s3 - s2}")
     return solution1, solution2
 
 
