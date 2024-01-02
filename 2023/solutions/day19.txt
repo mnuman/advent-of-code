@@ -1,0 +1,24 @@
+For day 19 part 2, we need to figure out how many combinations are accepted,
+starting with ranges 1-4000 for x, m, a and s. Clearly, it is too much work
+generating all combinations - 256 * 10^12.
+
+What could work here is to work with a range for each variable to reflect
+which values will be passed on.
+
+For a hypothetical configuration;
+in{s<1351:px,x>2700:abc,qqz}
+
+Now:
+1) we start in with {"x": (1,4000), "m": (1,4000), "a": (1, 4000), "s": (1,4000)}
+2) the first workflow applies to values in s, s<1351 are routed towards px.
+   - evaluate px with {"x": (1,4000), "m": (1,4000), "a": (1, 4000), "s": (1,1350)}
+3) determine remainer of the rangeset, e.g. s>=1351; here we need to route all x > 2700
+   route these to abc: {"x": (2701,4000), "m": (1,4000), "a": (1, 4000), "s": (1351, 4000)}
+4) remainder of rangeset has x <= 2700, hence:
+    {"x": (1,2700), "m": (1,4000), "a": (1, 4000), "s": (1351, 4000)}     - this will be 
+    routed to the default qqz (no further filtering)
+
+
+Duplicate counting!
+01: {'x': (1416, 4000), 'm': (1, 4000), 'a': (1, 2005), 's': (1, 1350)}
+02: {'x': (2663, 4000), 'm': (1, 4000), 'a': (1, 2005), 's': (1, 1350)}

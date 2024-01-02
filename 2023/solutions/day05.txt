@@ -1,0 +1,32 @@
+Ways to overlap between two ranges:
+
+#1 no overlap if s.end < t.start
+s  |--|       
+t       |--|
+
+#2 overlap, t.start -> s.end
+s  |--|       
+t    |--|
+
+#3 overlap, s.start -> s.end
+s      |--|       
+t    |------|
+
+#4 overlap, s.start -> t.end
+s      |--|       
+t    |---|
+
+#5 overlap, t.start -> t.end
+s   |------|       
+t    |---|
+
+# no overlap if s.start > t.end
+s       |--|
+t  |--|    
+
+Overlap if: 
+  not(s.end < t.start or s.start > t.end) == not s.end < t.start and not s.start > t.end == s.end >= t.start and s.start <= t.end
+
+  So, an overlap is possible if s.end >= t.start and s.start <= t.end!
+  In that case, the overlap itself is:
+  max(s.start, t.start) --> min(s.end, t.end)

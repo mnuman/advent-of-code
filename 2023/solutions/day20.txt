@@ -1,0 +1,26 @@
+Pulse: hi or lo
+Sent to all dest modules
+
+Flip-flops (prefix %): 
+state = on/off
+ignores hi pulse
+flips state on lo; sends hi if switched on, lo if switched off
+
+Conjunctions (prefix &):
+- remembers inputs from connected modules, initially lo
+- updates signals upon reception
+- if all inputs the same, sends corresponding pulse
+
+Single broadcaster:
+- sends identical pulse on receiving
+
+Button module controls all:
+- single lo sent to broadcaster
+
+Part 2:
+- rx to fire a low pulse.
+- rx is fed by &hj; for &hj to fire a low pulse, all its latest inputs need to be HIGH pulses.
+- inputs to hj are: ks, jf, qs, zk
+
+The inputs to hj do not carry their HI state to the end of the cycle, i.e. at 
+the end of each button press cycle, they are back to LO!
