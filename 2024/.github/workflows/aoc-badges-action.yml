@@ -1,0 +1,26 @@
+name: Update AoC Badges
+on:
+  workflow_dispatch:                             # allow to manually start the workflow 
+#  schedule:                                      # run workflow based on schedule
+#    - cron: '32 12 * 12 *'                    # In December every day at 12:32 (avoid load at full hours)
+  
+# push:                                          # (disabled) run on push, be carefull with this setting 
+                                                 # as the workflow should only be triggered at a rate lower than
+                                                 # 4 times a hour to keep traffic on aoc site low 
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:                                 # permissions to write to the repo are required!
+      contents: write
+    steps:
+      - uses: actions/checkout@v4                # clones your repo
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 362122                         # your user id, see setup on how to obtain
+          session: ${{ secrets.AOC_SESSION }}    # secret containing session code, see setup on how to obtain
+          year: 2024                             # the year for which stats should be retrieved
+          leaderboard: https://adventofcode.com/2024/leaderboard/private/view/362122.json
+      - uses: stefanzweifel/git-auto-commit-action@v5     # Step that pushes these local changes back to your github repo
+        with:
+          commit_message: Update badges
+          file_pattern: README.md

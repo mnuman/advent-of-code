@@ -1,0 +1,23 @@
+{
+    "python.testing.pytestArgs": [
+        "tests",
+        "--capture=no"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./test",
+        "-p",
+        "test*.py"
+    ],
+    "remote.restoreForwardedPorts": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "files.trimTrailingWhitespace": true
+    },
+    "python.languageServer": "Pylance"
+}
